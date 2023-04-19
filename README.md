@@ -10,7 +10,7 @@ PHP, Laravel, HTML, CSS, JavaScript, jquery를 활용하여 제작한 의류 판
 | --- | --- |
 | OS | Windows 11 Home |
 | Language | PHP 8.2.0, HTML5, CSS3, JS |
-| Framework | Laravel 9.48.0 |
+| Framework | Laravel 9.50.2 |
 | Editor | Visual Studio Code 1.74.2 |
 | DBMS | MySQL Workbench 8.0 |
 | develop period | 2023-04-07 ~ 2023-04-19 |
