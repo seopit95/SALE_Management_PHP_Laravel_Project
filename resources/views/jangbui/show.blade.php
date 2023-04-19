@@ -27,12 +27,12 @@
       </tr>
       <tr>
         <td width="20%" class="mycolor2">비고</td>
-        <td width="80%" align="left">{{number_format($row->note)}}</td>
+        <td width="80%" align="left">{{$row->note}}</td>
       </tr>
     </table>
     <div align="center">
       <a href="{{ route('jangbui.edit', $row->id) }}{{ $tmp }}" class="btn btn-sm mycolor1">수정</a>
-      <form action="{{route('jangbui.delete', $row->id)}}">
+      <form action="{{route('jangbui.destroy', $row->id)}}">
         @csrf
         @method('DELETE')
         <button type="submit" class="btn btn-sm mycolor1" onclick="return confirm('삭제할까요?');">삭제</button>

@@ -20,7 +20,7 @@ class PictureController extends Controller
     
     public function getlist($text1)
     {
-        $result = Product::where('name','like','%',$text1,'%')->
+        $result = Product::where('name','like','%'.$text1.'%')->
             orderby('name','asc')->
             paginate(5)->appends(['text1'=>$text1]);
 

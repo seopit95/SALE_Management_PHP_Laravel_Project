@@ -63,7 +63,7 @@
         <td width="80%" align="left">
           <div class="d-inline-flex">
             <input type="hidden" name="products_id" value="{{ old('products_id') }}">
-            <input type="text" name="product_name" value="" class="form-control form-control-sm" readonly>&nbsp;
+            <input type="text" name="product_name" value="{{ $row->product_name }}" class="form-control form-control-sm" readonly>&nbsp;
             <input type="button" value="제품찾기" onclick="find_product();" class="btn btn-sm mycolor1">
           </div><br>
           @error('products_id') {{ $message }} @enderror

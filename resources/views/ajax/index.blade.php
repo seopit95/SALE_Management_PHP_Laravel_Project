@@ -12,70 +12,68 @@
       form1.submit();
     }
 
-    $(document).on("click", "ajax_add", function(){
-      $("#kind").val("add");
+    $(document).on("click",".ajax_add",function(){
+      $('#kind').val('add');
       $(".modal-title").text("구분 추가");
       $("#data_id").val("");
       $("#data_name").val("");
-    })
+    });
 
-    $(document).on("click", "ajax_edit", function(){
-      $("#kind").val("edit");
+    $(document).on("click",".ajax_edit",function(){
+      $('#kind').val('edit');
       $(".modal-title").text("구분 수정");
-      $("#data_id").data( $(this).data("id"));
-      $("#data_name").data( $(this).data("name"));
-    })
+      $("#data_id").val($(this).data('id'));
+      $("#data_name").val($(this).data('name'));
+    });
 
     $(function(){
       $("#ajax_save").click(function(){
         var id = $("#data_id").val();
-        var name = $("data_name").val();
-        
+        var name = $("#data_name").val();
         if($("#kind").val()=="add"){
           $.ajax({
             headers: {"X-CSRF-TOKEN": $("meta[name='_token']").attr("content")},
             url: "ajax",
             type: "POST",
             data: {
-              name: name,
+              name : name,
             },
-            dataType: "jason",
             success: function(data){
               var id = data.id;
               $("#table_list").append(
-                "<tr id='rowno"+id+"'>"+
-                " <td> "+id+"</td>"+
-                " <td> <a href='#ajaxModal' data-bs-toggle='modal' data-bs-target='#ajaxModal' class='ajax_edit' data-id='"+id+"' data-name='"+id+"'>"+name+"</a></td>"+
-                " <td> <a href='#' rowno='"+id+"' class='ajax_del btn btn-sm mycolor1'>삭제</a></td>"+
+                "<tr id='rowno"+ id + "'>" +
+                "   <td>" + id + "</td>" +  
+                "   <td> <a href='#'>" + name + "</a></td>" +  
+                "   <td> <a href='#' rowno='" + id + "' class='ajax_del btn btn-sm mycolor1'>삭제</a></td>" +  
                 "</tr>");
             }
-          })
+          });
         }else{
           $.ajax({
             headers: {"X-CSRF-TOKEN": $("meta[name='_token']").attr("content")},
-            url: "ajax"/+id,
+            url: "ajax/"+id,
             type: "POST",
             data: {
-              _method: 'PATCH',
-              name: name,
+              _method : 'PATCH',
+              name : name,
             },
             success: function(data){
               $("#rowno"+id).replaceWith(
-                "<tr id='rowno"+id+"'>"+
-                " <td> "+id+"</td>"+
-                " <td> <a href='#ajaxModal' data-bs-toggle='modal' data-bs-target='#ajaxModal' class='ajax_edit' data-id='"+id+"' data-name='"+id+"'>"+name+"</a></td>"+
-                " <td> <a href='#' rowno='"+id+"' class='ajax_del btn btn-sm mycolor1'>삭제</a></td>"+
+                "<tr id='rowno"+ id + "'>" +
+                "   <td>" + id + "</td>" +  
+                "   <td> <a href='#ajaxModal' data-bs-toggle='modal' data-bs-target='#ajaxModal' class='ajax_edit' data-id='" + id + "' data-name='" + name + "'>" + name + "</a></td>" +  
+                "   <td> <a href='#' rowno='" + id + "' class='ajax_del btn btn-sm mycolor1'>삭제</a></td>" +  
                 "</tr>");
             }
-          })
-        }
-      })
+          });
+        }  
+      });
 
-      $("#table_list").on("click","ajax_del",function(){
-        if(confirm("삭제하시겠습니까?")){
-          var id=$(this).attr("rowno");
+      $("#table_list").on("click",".ajax_del",function(){
+        if(confirm("삭제할까요?")){
+          var id = $(this).attr("rowno");
           $.ajax({
-            headers: {'X_CSRF-TOKEN': $('meta[name="_token"]').attr('content')},
+            headers: {'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')},
             url: "ajax/"+id,
             type: "POST",
             data: {
@@ -86,8 +84,8 @@
             }
           });
         }
-      })
-    })
+      });
+    });
   </script>
 
   <form name="form1" action="" method="GET">
@@ -96,7 +94,7 @@
         <div class="input-group input-group-sm">
           <span class="input-group-text">구분명</span>
           <input type="text" name="text1" value="{{ $text1 }}" class="form-control" onkeydown="if(event.ketCode == 13){find_text();}">
-          <button class="btn mycolor1" type="button">검색</button>
+          <button class="btn mycolor1" type="button" onclick="find_text();">검색</button>
         </div>
       </div>
       <div class="col-9" align="right">

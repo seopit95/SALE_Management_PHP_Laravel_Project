@@ -16,7 +16,7 @@
         <div class="input-group input-group-sm">
           <span class="input-group-text">이름</span>
           <input type="text" name="text1" value="{{ $text1 }}" class="form-control" onkeydown="if(event.keyCode == 13){find_text();}">
-          <button class="btn mycolor1" type="button">검색</button>
+          <button class="btn mycolor1" type="button" onclick="find_text();">검색</button>
         </div>
       </div>
       <div class="col-6" align="right">

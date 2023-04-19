@@ -64,7 +64,7 @@ class JangbuoController extends Controller
         $data['tmp'] = $this->qstring();
         
         $data['row'] = Jangbu::leftjoin('products','jangbus.products_id','=','products.id')->
-            select('jangbus.*','products.name as products_name')->
+            select('jangbus.*','products.name as product_name')->
             where('jangbus.id','=',$id)->first();
         return view('jangbuo.show', $data);
     }
